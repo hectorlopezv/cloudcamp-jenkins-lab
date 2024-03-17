@@ -3,6 +3,8 @@ _scm_terraform/*.terraform/*
 
 _scm_terraform/keys/*
 
+*.credentials
+
 # .tfstate files
 _scm_terraform/*.tfstate
 *.tfstate.*
