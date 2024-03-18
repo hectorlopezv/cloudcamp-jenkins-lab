@@ -1,0 +1,18 @@
+#!/usr/bin/env groovy
+
+node (){
+    stage('Checkout') {
+
+        checkout scmGit(
+                        branches: 
+                        [[name: 'yaayala/jenkinsfile']], 
+                        extensions: [], 
+                        userRemoteConfigs: [[url: 'https://github.com/yaayala/cloudcamp-jenkins-lab']]
+                        ) 
+        
+    }
+
+    stage ('Build') {
+        sh 'docker build -t "app/python-hello-world:1.0.0-beta.1" -f _scm_docker/Dockerfile _scm_docker/'
+    }
+}
