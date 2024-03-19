@@ -13,6 +13,7 @@ node ('docker&&linux'){
     }
 
     stage ('Build') {
+        sh 'whoami'
         sh 'docker build -t "python-hello-world:1.0.0-beta.1" -f _scm_docker/Dockerfile _scm_docker/'
     }
     stage ('Push') {
