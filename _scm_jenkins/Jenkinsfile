@@ -42,7 +42,7 @@ def checkoutFromRepo(branch, repoURL){
 
 }
 
-def dockerBuild(appName, dockeFilepath="Dockerfile", context="."){
+def dockerBuild(appName, dockerFilepath="Dockerfile", context="."){
 
 
     stage ('Build') {
