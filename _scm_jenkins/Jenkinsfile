@@ -1,7 +1,7 @@
 #!/usr/bin/env groovy
 //comment
 node ('docker&&linux'){
-    
+
     // Docker Build and Push Stages variables
     def appName = "hello-world-python"
     // Docker Build Stage variables
@@ -18,9 +18,9 @@ node ('docker&&linux'){
     //Call checkout stage method
     checkoutFromRepo("${branchName}", "${repoURL}")
     //Call build stage method
-    dockerBuild("${appName}", "${dockerFilepath}", "${dockerContext}")
+    dockerBuild(appName, dockerFilepath, dockerContext)
     //Call push stage method
-    dockerPush("${awsRegion}", "${registryURL}", "${appName}", "${appVersion}" )
+    dockerPush("${awsRegion}", "${registryURL}", "${appName}", "${appVersion}")
 
 
 
@@ -51,7 +51,7 @@ def dockerBuild(appName, dockeFilepath="Dockerfile", context="."){
 
 }
 
-def dockerPush(region, registryURL, appName, appVersion  ){
+def dockerPush(region, registryURL, appName, appVersion){
     
 
     stage ('Push') {
