@@ -19,11 +19,11 @@ node ('docker&&linux'){
 
 
     //Call checkout stage method
-    checkoutFromRepo(branch: "${parameters.branchName}", repoURL: "${parameters.repoURL}")
+    checkoutFromRepo(parameters.config)
     //Call build stage method
-    dockerBuild(parameters)
+    dockerBuild(parameters.config)
     //Call push stage method
-    dockerPush(parameters)
+    dockerPush(parameters.config)
 
 
 
