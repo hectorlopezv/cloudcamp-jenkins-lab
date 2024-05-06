@@ -1,13 +1,13 @@
 #!/usr/bin/env groovy
 
-node (){
+node ("docker"){
     stage('Checkout') {
 
         checkout scmGit(
                         branches: 
-                        [[name: 'yaayala/jenkinsfile']], 
+                        [[name: 'hector/jenkinsfile']], 
                         extensions: [], 
-                        userRemoteConfigs: [[url: 'https://github.com/yaayala/cloudcamp-jenkins-lab']]
+                        userRemoteConfigs: [[url: 'https://github.com/hectorlopezv/cloudcamp-jenkins-lab']]
                         ) 
         
     }
