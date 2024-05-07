@@ -18,7 +18,7 @@ node ("docker&&linux"){
 
         stage ('Push') {
             
-         sh   'aws ecr get-login-password --region us-east-1 |  docker login -u AWS -p $(aws ecr get-login-password --region us-east-1) 711324356654.dkr.ecr.us-east-1.amazonaws.com'
+         sh   'aws ecr get-login-password --region us-east-1 |  docker login --username AWS --password-stdin 711324356654.dkr.ecr.us-east-1.amazonaws.com'
          sh 'docker tag hector-python-hello-world:latest 711324356654.dkr.ecr.us-east-1.amazonaws.com/python-hello-world:1.0.0-beta'
         sh 'docker build -t "python-hello-world:1.0.0-beta." -f _scm_docker/Dockerfile _scm_docker/'
         sh 'docker push 711324356654.dkr.ecr.us-east-1.amazonaws.com/hector-python-hello-world:latest'
