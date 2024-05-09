@@ -56,7 +56,7 @@ def dockerPush(region, registryURL, appName, appVersion){
     
 
 stage ('Push') {
-    withAWS(region: "${awsRegion}") { // Ensure 'aws-credentials' is the ID of your stored AWS credentials if not using EC2 roles
+    withAWS(region: "${region}") { // Ensure 'aws-credentials' is the ID of your stored AWS credentials if not using EC2 roles
         sh "eval \$(aws ecr get-login --region ${region} --no-include-email)"
         sh "docker tag ${appName}:latest ${registryURL}/${appName}:${appVersion}"
         sh "docker tag ${appName}:latest ${registryURL}/${appName}:latest"
