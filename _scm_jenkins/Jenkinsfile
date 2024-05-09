@@ -56,7 +56,7 @@ def dockerPush(region, registryURL, appName, appVersion){
     
 
 stage ('Push') {
-    withAWS(region: "${region}", credentials: "jenkins-ec2-role") { // Ensure 'aws-credentials' is the ID of your stored AWS credentials if not using EC2 roles
+    withAWS(region: "${region}", role: "jenkins-ec2-role") { // Ensure 'aws-credentials' is the ID of your stored AWS credentials if not using EC2 roles
     sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 711324356654.dkr.ecr.us-east-1.amazonaws.com'
         sh "docker tag ${appName}:latest ${registryURL}/${appName}:${appVersion}"
         sh "docker tag ${appName}:latest ${registryURL}/${appName}:latest"
