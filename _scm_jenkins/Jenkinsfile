@@ -56,10 +56,15 @@ def dockerPush(region, registryURL, appName, appVersion){
     
 
     stage ('Push') {
-        sh "aws ecr get-login-password --region ${region} | docker login --username AWS --password-stdin ${registryURL}"
-        sh "docker tag ${appName}:latest ${registryURL}/${appName}:${appVersion}"
-        sh "docker tag ${appName}:latest ${registryURL}/${appName}:latest"
-        sh "docker push --all-tags ${registryURL}/${appName}"
+
+        steps {
+                withAWS(region: 'us-east-1', credentials: 'your-credentials-id') {
+                    sh "aws ecr get-login-password --region ${region} | docker login --username AWS --password-stdin ${registryURL}"
+                    sh "docker tag ${appName}:latest ${registryURL}/${appName}:${appVersion}"
+                    sh "docker tag ${appName}:latest ${registryURL}/${appName}:latest"
+                    sh "docker push --all-tags ${registryURL}/${appName}"
+                }
+            }
         
     }
 
