@@ -21,7 +21,7 @@ node ('docker&&linux'){
     //Call build stage method
     dockerBuild(appName, dockerFilepath, dockerContext)
     //Call push stage method
-    dockerPush("${awsRegion}", "${registryURL}", "${appName}", "${appVersion}")
+    dockerPushV2("${awsRegion}", "${registryURL}", "${appName}", "${appVersion}")
 
 
 
@@ -52,7 +52,7 @@ def dockerBuild(appName, dockerFilepath="Dockerfile", context="."){
 
 }
 
-def dockerPush(region, registryURL, appName, appVersion){
+def dockerPushV1(region, registryURL, appName, appVersion){
     
 
 stage ('Push') {
@@ -63,6 +63,21 @@ stage ('Push') {
         sh "docker push ${registryURL}/${appName}:${appVersion}"
         sh "docker push ${registryURL}/${appName}:latest"
     }
+}
+
+}
+
+def dockerPushV2(region, registryURL, appName, appVersion){
+    
+
+stage ('Push') {
+ 
+    sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 711324356654.dkr.ecr.us-east-1.amazonaws.com'
+        sh "docker tag ${appName}:latest ${registryURL}/${appName}:${appVersion}"
+        sh "docker tag ${appName}:latest ${registryURL}/${appName}:latest"
+        sh "docker push ${registryURL}/${appName}:${appVersion}"
+        sh "docker push ${registryURL}/${appName}:latest"
+    
 }
 
 }
