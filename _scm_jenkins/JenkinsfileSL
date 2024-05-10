@@ -1,5 +1,3 @@
 @library("my-first-shared-library") _
 
-
-
 microservice()
