@@ -4,7 +4,7 @@
 node ('docker&&linux'){
 
     // Docker Build and Push Stages variables
-    def appName = "hello-world-python"
+    def appName = "hector-python-hello-world"
     // Docker Build Stage variables
     def dockerFilepath = "_scm_docker/Dockerfile"
     def dockerContext = "_scm_docker/"
