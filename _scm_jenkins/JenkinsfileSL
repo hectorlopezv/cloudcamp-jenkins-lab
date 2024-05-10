@@ -1,3 +1,3 @@
-@Library("bootcamp-share-library") _
+@Library("bootcamp-share-library")
 
 microservice()
